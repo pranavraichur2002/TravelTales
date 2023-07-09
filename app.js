@@ -22,15 +22,12 @@ const reviewRoutes = require("./routes/reviews");
 const mongoSanitize = require("express-mongo-sanitize");
 
 mongoose
-  .connect(
-    "mongodb+srv://admin:adminpassword@cluster0.bqpjg5r.mongodb.net/yelpcamp",
-    {
-      useNewUrlParser: true,
-      // useCreateIndex: true,
-      useUnifiedTopology: true,
-      // useFindAndModify: false
-    }
-  )
+  .connect(process.env.MONGO_URL, {
+    useNewUrlParser: true,
+    // useCreateIndex: true,
+    useUnifiedTopology: true,
+    // useFindAndModify: false
+  })
   .then(() => console.log("Connected to DB!"))
   .catch((error) => console.log(error.message));
 const db = mongoose.connection;
