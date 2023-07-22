@@ -79,7 +79,9 @@ app.use((req, res, next) => {
 //   const newUser = await User.register(user, "chicken");
 //   res.send(newUser);
 // });
-app.use("/", userRoutes);
+app.use("/", (req, res, next) => {
+  return res.json({ msg: "success" });
+});
 app.use("/campgrounds", campgroundRoutes);
 app.use("/campgrounds/:id/reviews", reviewRoutes);
 app.get("/", (req, res) => {
@@ -93,6 +95,6 @@ app.use((err, req, res, next) => {
   const { statusCode = 500, message = "Something went wrong" } = err;
   res.status(statusCode).render("error", { err });
 });
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log("Serving on 3000");
 });
