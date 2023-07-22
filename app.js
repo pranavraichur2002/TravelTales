@@ -79,9 +79,7 @@ app.use((req, res, next) => {
 //   const newUser = await User.register(user, "chicken");
 //   res.send(newUser);
 // });
-app.use("/", (req, res, next) => {
-  return res.json({ msg: "success" });
-});
+app.use("/", userRoutes);
 app.use("/campgrounds", campgroundRoutes);
 app.use("/campgrounds/:id/reviews", reviewRoutes);
 app.get("/", (req, res) => {
